@@ -124,9 +124,9 @@ SIMPLE_JWT = {
 # In prod we set CORS_ALLOWED_ORIGINS="https://your-frontend.railway.app" in Railway env vars
 
 CORS_ALLOW_ALL_ORIGINS = DEBUG
-CORS_ALLOWED_ORIGINS = (
-    os.environ.get("CORS_ALLOWED_ORIGINS", "").split(",") if not DEBUG else []
-)
+
+cors_origins = os.environ.get("CORS_ALLOWED_ORIGINS", "").strip()
+CORS_ALLOWED_ORIGINS = [o for o in cors_origins.split(",") if o.strip()]
 
 # ─── Static ───────────────────────────────────────────────────────────────────
 
